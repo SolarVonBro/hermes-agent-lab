@@ -13,7 +13,8 @@
 | Шлюз | Telegram (бот `@romasoniabot`), режим long polling, входящих портов нет |
 | LLM | OpenRouter, модель `nvidia/nemotron-3.5-lightning:free` (контекст 1 000 000 токенов, вызов инструментов) |
 | Лимит расходов | ключ OpenRouter с лимитом $1; фактически потрачено $0 (`GET /api/v1/key`: `limit: 1`, `usage: 0`, `is_free_tier: true`) |
-| Ссылка на проект | образ и документация: <https://github.com/NousResearch/hermes-agent> |
+| Репозиторий работы | <https://github.com/SolarVonBro/hermes-agent-lab> |
+| Исходный проект агента | образ и документация: <https://github.com/NousResearch/hermes-agent> |
 
 Руководство thecode.media с компьютера автора недоступно (отказ соединения), поэтому развёртывание выполнено по официальной документации проекта (`docker.md`, `telegram.md`, `SECURITY.md`).
 

@@ -2,7 +2,7 @@
 name: site-healthcheck
 description: "Проверить доступность сайта: код ответа 200 и контрольная строка в HTML; отчёт о результате или о проблеме."
 version: 0.1.0
-author: Roman Golienko (лабораторная работа №2)
+author: Голиенко Роман, Митенева София (задание 2)
 license: MIT
 platforms: [linux, macos, windows]
 metadata:

@@ -1,0 +1,30 @@
+# compose.yaml — Hermes Agent в Docker Desktop (изолированный контур для лабораторной работы)
+#
+# Безопасность (почему так):
+#   - порты НЕ публикуются: единственный канал управления — исходящее соединение
+#     контейнера к Telegram (long polling); входящих портов нет
+#   - монтируется только ./data (конфиг, память, навыки); других каталогов хоста нет
+#   - /var/run/docker.sock не монтируется -> агент не может управлять Docker хоста
+#   - network_mode: host не используется (в оригинальном compose он есть)
+#   - агент работает от непривилегированного пользователя hermes (UID 10000), не от root
+#   - allowlist Telegram и токен лежат в data/.env, которого нет в репозитории
+#   - лимит ресурсов контейнера защищает ПК от зацикливания агента
+services:
+  hermes:
+    image: nousresearch/hermes-agent:stable   # образ из Docker Hub (проект NousResearch, MIT)
+    container_name: hermes
+    restart: always                           # поднимается сам после перезапуска Docker/ПК (unless-stopped после перезапуска Docker Desktop НЕ поднялся — см. отчёт)
+    command: ["gateway", "run"]               # запуск шлюза (Telegram) под s6-supervise
+    volumes:
+      - ./data:/opt/data                      # каталог данных агента ожидается по пути /opt/data
+    environment:
+      - HERMES_UID=10000
+      - HERMES_GID=10000
+    mem_limit: 1536m
+    cpus: 1.0
+    pids_limit: 512
+    logging:                                  # ротация логов контейнера
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"

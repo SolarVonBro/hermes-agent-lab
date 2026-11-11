@@ -1,0 +1,10 @@
+2026-11-11 13:46:30,506 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Connected to Telegram (polling mode)
+2026-11-11 13:49:05,255 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Connected to Telegram (polling mode)
+2026-11-11 13:50:31,376 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Connected to Telegram (polling mode)
+2026-11-11 13:52:20,689 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Connected to Telegram (polling mode)
+2026-11-11 14:10:32,617 INFO gateway.run: Ignoring /start platform ping for session agent:main:telegram:dm:523178XXXX
+2026-11-11 14:10:48,916 INFO gateway.run: inbound message: platform=telegram user=<имя> chat=523178XXXX msg='Привет' reply_to_id=None reply_to_text=''
+2026-11-11 14:10:55,259 INFO gateway.run: response ready: platform=telegram chat=523178XXXX session=agent:main:telegram:dm:523178XXXX time=6.3s api_calls=1 response=24 chars
+2026-11-11 14:11:14,916 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Blocked unauthorized user 87656XXXX in chat 87656XXXX
+2026-11-11 14:11:17,477 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Blocked unauthorized user 87656XXXX in chat 87656XXXX
+2026-11-11 14:24:02,607 WARNING hermes_plugins.platforms__telegram.adapter: [Telegram] Connected to Telegram (polling mode)

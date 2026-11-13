@@ -11,7 +11,7 @@
 | `compose.yaml` | запуск агента: образ, перезапуск, монтирование данных, лимиты, ротация логов |
 | `.env.example` | какие переменные нужны (реальный `data/.env` вне репозитория) |
 | `skills/site-healthcheck/` | собственный навык: проверка доступности сайта |
-| `docs/` | отчёт, модель угроз T3 и доказательства (журналы) |
+| `docs/` | отчёт ([`report.md`](docs/report.md), версия для печати [`otchet-zadanie-2.pdf`](docs/otchet-zadanie-2.pdf)), модель угроз T3 и доказательства (журналы) |
 
 ## Запуск
 
@@ -24,5 +24,24 @@ docker logs hermes
 ```
 
 Навык копируется в `data/skills/devops/site-healthcheck/`.
+
+### Резервная цепочка моделей
+
+Чтобы при ошибке лимита (429) или недоступности основной модели агент сам переходил на другую, в конец `data/config.yaml` добавляется следующий фрагмент. Включать можно только бесплатные модели: переключение срабатывает и на ошибку оплаты (402).
+
+```yaml
+fallback_providers:
+  - provider: openrouter
+    model: nvidia/nemotron-3-ultra-550b-a55b:free
+  - provider: openrouter
+    model: google/gemma-4-31b-it:free
+  - provider: openrouter
+    model: openrouter/free
+
+auxiliary:
+  free_only: true
+```
+
+Проверка: `hermes fallback list`, затем `docker restart hermes`. Подробнее — в отчёте, подразделы 2.9 и 3.8.
 
 Лицензия: код и конфигурация — MIT; тексты — CC BY 4.0.
